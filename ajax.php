@@ -6,14 +6,14 @@ if( isset($_POST['type']) && !empty( isset($_POST['type']) ) ){
 	$type = $_POST['type'];
 	
 	switch ($type) {
-		case "save_user":
-			save_user($mysqli);
+		case "save_employee":
+			save_employee($mysqli);
 			break;
-		case "delete_user":
-			delete_user($mysqli, $_POST['id']);
+		case "delete_employee":
+			delete_employee($mysqli, $_POST['id']);
 			break;
-		case "getUsers":
-			getUsers($mysqli);
+		case "getemployees":
+			getemployees($mysqli);
 			break;
 		default:
 			invalidRequest();
@@ -23,17 +23,17 @@ if( isset($_POST['type']) && !empty( isset($_POST['type']) ) ){
 }
 
 /**
- * This function will handle user add, update functionality
+ * This function will handle employee add, update functionality
  * @throws Exception
  */
-function save_user($mysqli){
+function save_employee($mysqli){
 	try{
 		$data = array();
-		$name = $mysqli->real_escape_string(isset( $_POST['user']['name'] ) ? $_POST['user']['name'] : '');
-		$companyName = $mysqli->real_escape_string(isset( $_POST['user']['companyName'] ) ? $_POST['user']['companyName'] : '');
-		$designation = $mysqli->real_escape_string( isset( $_POST['user']['designation'] ) ? $_POST['user']['designation'] : '');
-		$email = $mysqli->real_escape_string( isset( $_POST['user']['email'] ) ? $_POST['user']['email'] : '');
-		$id = $mysqli->real_escape_string( isset( $_POST['user']['id'] ) ? $_POST['user']['id'] : '');
+		$name = $mysqli->real_escape_string(isset( $_POST['employee']['name'] ) ? $_POST['employee']['name'] : '');
+		$companyName = $mysqli->real_escape_string(isset( $_POST['employee']['companyName'] ) ? $_POST['employee']['companyName'] : '');
+		$designation = $mysqli->real_escape_string( isset( $_POST['employee']['designation'] ) ? $_POST['employee']['designation'] : '');
+		$email = $mysqli->real_escape_string( isset( $_POST['employee']['email'] ) ? $_POST['employee']['email'] : '');
+		$id = $mysqli->real_escape_string( isset( $_POST['employee']['id'] ) ? $_POST['employee']['id'] : '');
 	
 		if($name == '' || $companyName == '' || $designation == ''|| $email == '' ){
 			throw new Exception( "Required fields missing, Please enter and submit" );
@@ -48,8 +48,8 @@ function save_user($mysqli){
 	
 		if( $mysqli->query( $query ) ){
 			$data['success'] = true;
-			if(!empty($id))$data['message'] = 'User updated successfully.';
-			else $data['message'] = 'User inserted successfully.';
+			if(!empty($id))$data['message'] = 'employee updated successfully.';
+			else $data['message'] = 'employee inserted successfully.';
 			if(empty($id))$data['id'] = (int) $mysqli->insert_id;
 			else $data['id'] = (int) $id;
 		}else{
@@ -68,17 +68,17 @@ function save_user($mysqli){
 }
 
 /**
- * This function will handle user deletion
+ * This function will handle employee deletion
  * @param string $id
  * @throws Exception
  */
-function delete_user($mysqli, $id = ''){
+function delete_employee($mysqli, $id = ''){
 	try{
-		if(empty($id)) throw new Exception( "Invalid User." );
+		if(empty($id)) throw new Exception( "Invalid employee." );
 		$query = "DELETE FROM `employee` WHERE `id` = $id";
 		if($mysqli->query( $query )){
 			$data['success'] = true;
-			$data['message'] = 'User deleted successfully.';
+			$data['message'] = 'employee deleted successfully.';
 			echo json_encode($data);
 			exit;
 		}else{
@@ -96,9 +96,9 @@ function delete_user($mysqli, $id = ''){
 }
 	
 /**
- * This function gets list of users from database
+ * This function gets list of employees from database
  */
-function getUsers($mysqli){
+function getemployees($mysqli){
 	try{
 	
 		$query = "SELECT * FROM `employee` order by id desc limit 8";
