@@ -1,4 +1,5 @@
 var myApp = angular.module("myModule", []);  
+
 myApp.controller("myController", function ($scope,$http) {  
 
 $scope.SortColumn = "name";
@@ -22,20 +23,33 @@ $scope.getSortClass = function (column) {
 
 $scope.insertData= function(){
 $http.post(
-"insert.php",{'name':$scope.tempUser.name,'email':$scope.tempUser.email,'contact':$scope.tempUser.contact,'pwd':$scope.tempUser.pwd}
-)
-.success(function(data){
+"insert.php",
+{'name':$scope.tempUser.name,'email':$scope.email,'contact':$scope.contact,'pwd':$scope.pwd}
+).success(function(data){
 alert(data)
 $scope.tempUser.name=null;
-$scope.tempUser.email=null;
-$scope.tempUser.contact=null;
-$scope.tempUser.pwd=null;
-$scope.DisplayData();
+$scope.email=null;
+$scope.contact=null;
+$scope.pwd=null;
+$scope.displayData();
+});
+}
+
+$scope.delete = function(id){
+	//alertId
+	$http.post(
+	"delete.php",
+	{'abc':id}
+	)
+}
+
+$http.get("data.php")
+.then(function (response) {
+$scope.students = response.data;
 })
-};
+})
 
-
-$scope.DisplayData = function(){
+$scope.displayData = function(id){
 $http.get(data.php)
 }
 });

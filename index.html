@@ -1,16 +1,16 @@
-<html>
+<html ng-app="myModule">
 <head>
 <title> Combination of bootstrap and angularJS</title>
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="Scripts/angular.min.js"></script>     
-<script src="Scripts/angular.route.min.js"></script>     
-<script src="Scripts/route.js"></script>     
+<!--<script src="Scripts/angular.route.min.js"></script> -->
+<script src="Scripts/script.js"></script>     
 <link href="css/bootstrap.min.css" rel="stylesheet" /> 
 
 </head>
-<body>
+<body ng-controller="myController">
 <nav class="navbar navbar-inverse navbar-fixed-top navclass" id="main-navbar" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -27,7 +27,7 @@
 	<li><a href ="#">Product Name</a></li>
 	<li><a href ="#">Testimonials</a></li>
 	<li><a href ="#">Features</a></li>
-	<li><a href ="#">Gallery</a></li>
+	<li><a href ="#emp">Employees</a></li>
 	<li><a href ="#">FAQ</a></li>
 	<li><a href ="#">Contact</a></li>
 	</ul>  
@@ -58,6 +58,17 @@
 <a class="carousel-control right" data-slide="next" href= "#abc"><span class= "glyphicon glyphicon-forward"></span></a>
 </div>
 </div>
+
+</div>
+<div class ="container-fluid" id = "emp">
+<h1>List of Products</h1> 
+{{students}}
+<ul>     
+<li ng-repeat="student in students">         
+<a href = "#/students/{{student.pid}}">{{student.pname}} </a> 
+<img src = "images/{{student.pimage}}" style = "height :200px width:200px">
+</li> 
+</ul>  
 
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
