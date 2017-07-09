@@ -6,7 +6,7 @@ Author :vetripandi
 //site specific configuration declartion
 define( 'BASE_PATH', 'http://localhost/post/');
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'angular');
+define('DB_NAME', 'product');
 define('DB_USERNAME','root');
 define('DB_PASSWORD','');
 
