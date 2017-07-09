@@ -1,0 +1,19 @@
+.container{
+padding-right :15px; padding-left:15px; margin-right:auto; margin-left:auto}
+@media(min-widt:768px){.container{width:750px; background-color:grey}}
+@media(min-widt:992px){.container{width:950px; background-color:blue}}
+@media(min-widt:768px){.container{width:1100px; background-color:green}}
+
+body{background-color:cyan}
+@media(min-width:768px){body{background-color:pink}}
+@media(min-width:992px){body{background-color:red}}
+@media(min-width:1200px){body{background-color:yellow}}
+
+	
+p{font:arial}
+@media(min-widt:768px){p{font:Calibri}}
+@media(min-widt:992px){p{font:Liberation Serif}}
+@media(min-widt:768px){p{font:Times New Roman}}
+
+
+
